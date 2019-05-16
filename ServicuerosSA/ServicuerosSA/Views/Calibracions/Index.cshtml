@@ -1,0 +1,111 @@
+﻿@model IEnumerable<ServicuerosSA.Models.Calibracion>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Calibracion</h2>
+
+<p>
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#IngresoCalibracion" onclick=" listacombox();">Nuevo Proceso</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+
+            <th>
+                Codigo del lote
+            </th>
+            <th>
+
+                Bombo
+            </th>
+            <th>
+                Espersor ok
+            </th>
+               <th>
+                Clasificacion en WB
+            </th>
+            <th>
+                Tipo en tripa
+            </th>
+        </tr>
+    </thead>
+    <tbody id="Listacalibrado"></tbody>
+</table>
+<div class="modal fade" id="IngresoCalibracion" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Ingreso de Proceso de Calibarcion
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Lotes clasificados</label>
+                        <select id="ClasificacionwbId" name="ClasificacionwbId" required class="form-control" onchange="uncalibrado();">
+                            <option value="0">Seleccione un lote </option>
+                        </select>
+                        <br />
+                        <span id="mensajees" class="alert alert-danger hidden">Seleccione el lote</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fecha de curtido</label>
+                        <input id="fechacurti" name="fechacurti" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <input id="codigoloteclasi" name="codigoloteclasi" type="text" class="control-label  hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Numero de bombo </label>
+                        <input id="bombo" name="bombo" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Clasificacion</label>
+                        <input id="clasi" name="clasi" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Numero de pieles </label>
+                        <input id="Totalpieles" name="Totalpieles" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Tipo</label>
+                        <input id="tipo" name="tipo" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Espesor ok</label>
+                        <input id="cantidadA" name="cantidadA" class="form-control" />
+                        <br />
+                        <span id="mensajeca" class="alert alert-danger hidden">Numero de pieles incorrecta</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Delgado</label>
+                        <input id="cantidadB" name="cantidadB" class="form-control" onfocusout="controlpielcalibracion()" />
+                        <br />
+                        <span id="mensajeca" class="alert alert-danger hidden">Numero de pieles incorrecta</span>
+                    </div>
+                    <div class="form-group">
+                        <input id="codigoloteclasi" name="codigoloteclasi" type="text" class="control-label  hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fecha de Calibracion</label>
+                        <input id="fecha" name="fecha" class="form-control" type="date" />
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guarda" name="guarda" onclick="guardaCalibrados()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

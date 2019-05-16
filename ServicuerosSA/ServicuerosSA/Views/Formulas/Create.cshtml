@@ -1,0 +1,62 @@
+﻿@model ServicuerosSA.Models.Formula
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Crear una nueva fórmula</h2>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">Seleccione el Tipo de Formula para aplicar</label>
+               
+                <select class="form-control" id="dato" onchange="seleccionFormula()">
+                    <option value="0">Pelambre</option>
+                    <option value="1">Curtido</option>
+                    
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha_Creacion" class="control-label"></label>
+                <input asp-for="Fecha_Creacion" class="form-control" />
+                <span asp-validation-for="Fecha_Creacion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Version" class="control-label"></label>
+                <input asp-for="Version" class="form-control" />
+                <span asp-validation-for="Version" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TipoProceso" class="control-label"></label>
+                <input asp-for="TipoProceso" class="form-control" />
+                <span asp-validation-for="TipoProceso" class="text-danger"></span>
+            </div>
+            <div class="form-group" id="tipoPiel">
+                <label asp-for="TipoPielId" class="control-label"></label>
+                <select asp-for="TipoPielId" class="form-control" asp-items="ViewBag.TipoPielId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Crear" class="btn btn-primary" />
+                <a class="btn btn-success" asp-action="Index">Regresar a la lista </a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,72 @@
+﻿@model ServicuerosSA.Models.Medido
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Medido</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Codigolote)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Codigolote)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Cantidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cantidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Pallet)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Pallet)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Area)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Area)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.activo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.activo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Calibracion)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Calibracion.CalibracionId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.bodega)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.bodega.NombreBodega)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.personal)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.personal.Apellidos)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.MedidoId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

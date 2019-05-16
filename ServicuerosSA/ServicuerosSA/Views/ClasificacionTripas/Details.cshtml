@@ -1,0 +1,24 @@
+﻿@model ServicuerosSA.Models.ClasificacionTripa
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Clasificacion en Tripa</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Detalle)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Detalle)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClasificacionTripaId">Editar</a> |
+    <a asp-action="Index">regresar a la Lista</a>
+</div>

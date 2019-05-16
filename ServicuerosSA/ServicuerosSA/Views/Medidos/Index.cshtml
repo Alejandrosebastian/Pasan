@@ -1,0 +1,142 @@
+﻿@model IEnumerable<ServicuerosSA.Models.Medido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Medido</h2>
+
+
+<p>
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#IngresoMedido" onclick="listamedido(); listaPersonal(); bodegastri(); ">Nuevo Proceso</a>
+</p>
+<table class="table" @*id="TablaMedido"*@>
+    <thead>
+        <tr>
+
+            <th>
+                Codigo del lote
+            </th>
+            <th>
+
+                Area
+            </th>
+            <th>
+                Pallet
+            </th>
+            <th>
+                Cantidad
+
+            </th>
+
+            <th>
+                Fecha
+
+            </th>
+            
+            <th>
+                Clasificacion en WB
+            </th>
+            <th>
+                Tipo en tripa
+            </th>
+        </tr>
+    </thead>
+    <tbody id="ListaindexMedido"></tbody>
+</table>
+<div class="modal fade" id="IngresoMedido" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Ingreso de Proceso en Medido
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Lotes calibrados</label>
+                        <select id="CalibracionId" name="CalibracionId" required class="form-control" onchange="">
+                            <option value="0">Seleccione un lote que desee medir</option>
+                        </select>
+                        <br />
+                        <span id="mensajees" class="alert alert-danger hidden">Seleccione el lote</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fecha de curtido</label>
+                        <input id="fechamedi" name="fechamedi" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <input id="codigolotemedido" name="codigolotemedido" type="text" class="control-label  hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Numero de pieles</label>
+                        <input id="Totalpieles" name="Totalpieles" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Numero de bombo</label>
+                        <input id="bombo" name="bombo" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Tipo</label>
+                        <input id="tipo" name="tipo" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Calsificacion en web</label>
+                        <input id="clasi" name="clasi" type="text" class="control-label alert alert-success hidden" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Cantidad</label>
+                        <input id="cantidad" name="cantidad" class="form-control" />
+                        <br />
+                        <span id="mensajeca" class="alert alert-danger hidden">Numero de pieles incorrecta</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Area</label>
+                        <input id="area" name="area" class="form-control" type="text" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Pallet</label>
+                        <input id="pallet" name="pallet" class="form-control" type="text" />
+                    </div>
+
+                    <div class="form-group">
+                        <input id="codigolotescurri" name="codigolotescurri" type="text" class="control-label  hidden" />
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Seleccione la bodega de almacenamiento</label>
+                        <select id="BodegaId" name="BodegaId" required class="form-control">
+                            <option value="0">Seleccione la bodega de almacenamineto</option>
+                        </select>
+                        <br />
+                        <span id="mensajebo" class="alert alert-danger hidden">Seleccione la bodega de almacenamineto:</span>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="control-label">Fecha de Medido</label>
+                        <input id="fecha" name="fecha" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Personal</label>
+                        <select id="personalId" name="personalId" required class="form-control">
+                            <option value="0">Seleccione el Personal asignado a esta operación</option>
+                        </select>
+                        <br />
+                        <span id="mensajeper" class="alert alert-danger hidden">Seleccione al Personal</span>
+                    </div>
+                   
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guarda" name="guarda" onclick="GuardarMedidos()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

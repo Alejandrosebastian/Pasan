@@ -1,0 +1,114 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Escurrido</h2>
+
+<p>
+    <a href="#" class="btn btn-success" data-toggle="modal" data-target="#IngresoEscurrido" onclick="listaIndexescurrido(); ListaBombos(); listaPersonal(); listacheck();  ">Nuevo Proceso</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+           
+            <th>
+                CodigoLote
+            </th>
+            <th>
+                Cantidad
+            </th>
+            <th>
+                Fecha
+            </th>
+
+            <th>
+                Bombo
+            </th>
+            <th>
+                Clasi. Tripa
+            </th>
+        </tr>
+    </thead>
+    <tbody id="EscurridoLista"> </tbody>
+</table>
+
+<div class="modal fade" id="IngresoEscurrido" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close"
+                        data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title"
+                    id="EtiquetaModal">
+                    Ingreso de Proceso Escurrido
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label class="control-label">Bombos</label>
+                        <select id="bomboId" name="bomboId" required class="form-control" onchange="listaescurrido(); ">
+                            <option value="0">Seleccione un bombo</option>
+                        </select>
+                        <br />
+                        <span id="mensajees" class="alert alert-danger hidden">Selecciones el lote de Curtido</span>
+                    </div>
+                    <div class="form-group">
+                        <input id="codigolotecurt" name="codigolotecurt" type="text" class="control-label  hidden" />
+                    </div>
+                  
+                    <div class="form-group">
+                        <label class="control-label">Cantidad</label>
+                        <input id="Cantidad" name="Cantidad" class="form-control" onfocusout="controlpielesescurrir()">
+                        <br />
+                        <span id="mensajeca" class="alert alert-danger hidden">Numero de pieles incorrecta</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Fecha</label>
+                        <input id="fecha" name="fecha" class="form-control" type="date" />
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Personal</label>
+                        <select id="personalId" name="personalId" required class="form-control">
+                            <option value="0">Seleccione el Personal asignado a esta operación</option>
+                        </select>
+                        <br />
+                        <span id="mensajeper" class="alert alert-danger hidden">Seleccione al Personal</span>
+                    </div>
+                    <table class="table" id="tablaEscurrido">
+                        <thead>
+                            <tr>
+                                <th style="width:100px">
+                                    Seleccion
+                                </th>
+                                <th>
+                                    Codigo Lote
+                                </th>
+                                <th>
+                                    Numero de Pieles
+                                </th>
+                                <th>
+                                    Peso
+                                </th>
+                                <th>
+                                    Tipo Tripa
+                                </th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody id="ListaEscurrido"></tbody>
+                    </table>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="guarda" name="guarda" onclick="GuardaEscurrido()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
