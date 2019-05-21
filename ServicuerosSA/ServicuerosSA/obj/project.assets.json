@@ -13649,11 +13649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\pasantias\\nuevo2\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
+      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
       "projectName": "ServicuerosSA",
-      "projectPath": "C:\\Users\\DELL\\Desktop\\pasantias\\nuevo2\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
       "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DELL\\Desktop\\pasantias\\nuevo2\\ServicuerosSA\\ServicuerosSA\\obj\\",
+      "outputPath": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

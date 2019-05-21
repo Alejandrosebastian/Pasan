@@ -382,27 +382,7 @@ var GuardaDescarne = () => {
     var guades = new Descarne(pelambre,cantidad,d,personal,codigolote,fech,accion);
     guades.GuardarPelambre();
 }
-var GuardaEscurrido = () => {
-    var accion = 'Escurridos/Controladordurdaescurrdio';
-    var curtidos = document.getElementById("CurtidoId");
-    var curtido = curtidos.options[curtidos.selectedIndex].value;
-    var bombos = document.getElementById("bomboId");
-    var bombo = bombos.options[bombos.selectedIndex].value;
-    var cantidad = document.getElementById("Cantidad").value;
-    var codigolotecurt = curtidos.options[curtidos.selectedIndex].text;
-    var personales = document.getElementById("personalId");
-    var personal = personales.options[personales.selectedIndex].value;
-    var d = new Date();
-    var fecha = d.getDate();
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    var day = dt.getDate();
-    var year = dt.getFullYear();
-    var fech = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
-    var guarda = new Escurrido(bombo, cantidad, codigolotecurt, fecha, curtido, personal, fech, accion);
-    guarda.Guardaescurrdio();
 
-}
 ///////// guardar clasificacion en tripa
 var Guardarbodetripas = () => {
     var accion = 'BodegaTripas/Controladorguardabodetripas';
@@ -634,7 +614,54 @@ var guardarCurtido = () => {
         });
     });
 }
+var GuardaEscurrido = () => {
+    var accion = 'Escurridos/Controladordurdaescurrdio';
+    //var curtidos = document.getElementById("CurtidoId");
+    //var curtido = curtidos.options[curtidos.selectedIndex].value;
+    var bombos = document.getElementById("bomboId");
+    var bombo = bombos.options[bombos.selectedIndex].value;
+    var cantidad = document.getElementById("Cantidad").value;
+    //var codigolotecurt = curtidos.options[curtidos.selectedIndex].text;
+    var personales = document.getElementById("personalId");
+    var personal = personales.options[personales.selectedIndex].value;
+    var d = new Date();
+    var fecha = d.getDate();
+    var dt = new Date();
+    var month = dt.getMonth() + 1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    $('#ListaEscurrido tr').each(function () {
+        var celdas = $(this).find('td');
+        var codigolote = $(celdas[2]).html();
+        var numpieles = $(celdas[3]).html();
+        var peso = $(celdas[4]).html();
+        var titrip = $(celdas[5]).html();
+        var CurtidoId = $(celdas[0]).html();
+        var fech = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
+        var n1 = parseInt(cantidad);
+        var n2 = parseInt(numpieles);
+        $(this).find("input:checkbox:checked").each(() => {
+            var cantidades = + $(celdas[3]);
+            alert(cantidades);
 
+        });
+        //if (n1 == n2) {
+        //    $(this).find("input:checkbox:checked").each(() => {
+        //        var guarda = new Escurrido(bombo, cantidad, codigolote, fecha, CurtidoId, personal, fech, accion);
+        //        guarda.Guardaescurrdio();
+        //    });
+        //} else {
+        //    var sum = n1 - n2;
+        //    $(this).find("input:checkbox:checked").each(() => {
+        //        var guarda = new Escurrido(bombo, sum, codigolote, fecha, CurtidoId, personal, fech, accion);
+        //        guarda.Guardaescurrdio();
+        //    });
+        //}
+
+       
+
+    });
+}
 var listatripas = () => {
     var accion = 'Curtidos/listatripas';
     var curti = new Curtidojs('', '', '', '', '', '', '', '', '', '', '',accion);
@@ -671,15 +698,23 @@ var unescurrido = () => {
 /////////control numero pieles escurrdio
 var controlpielesescurrir = () => {
   //  var curti = $("#TotalPielesInput").html();
-    var curti = document.getElementById("TotalPielesInput").value;
+    $('#ListaEscurrido tr').each(function () {
+        var celdas = $(this).find('td');
+        var codigolote = $(celdas[2]).html();
+        var numpieles = $(celdas[3]).html();
+        var peso = $(celdas[4]).html();
+        var titrip = $(celdas[5]).html();
+        var CurtidoId = $(celdas[0]).html();
+        
     var canti = document.getElementById("Cantidad").value;
-    if (parseInt(canti) > parseInt(curti)) {
+        if (parseInt(canti) >= parseInt(numpieles)) {
        $("#mensajeca").removeClass("hidden");
         $("#guarda").prop('disabled', true);
     } else {
         $("#mensajeca").addClass("hidden");
         $("#guarda").prop('disabled', false);
-    }
+        }
+    });
 }
 /// combo escurrido para calsificacion web
 var listawebblu = () => {
