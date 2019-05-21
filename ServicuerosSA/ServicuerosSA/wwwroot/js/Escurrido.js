@@ -45,7 +45,7 @@
             url: accion,
             data: {id},
             success: (respuesta) => {
-                console.log(respuesta);
+                
                 if (respuesta.length < 0) {
                     $('#ListaEscurrido').html('No tiene presenta registros');
                 } else {

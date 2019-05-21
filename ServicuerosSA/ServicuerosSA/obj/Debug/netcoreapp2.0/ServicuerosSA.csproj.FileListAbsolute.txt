@@ -10,6 +10,7 @@ C:\Users\DELL\Desktop\pasantias\nuevo2\ServicuerosSA\ServicuerosSA\bin\Debug\net
 C:\Users\DELL\Desktop\pasantias\nuevo2\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.dll
 C:\Users\DELL\Desktop\pasantias\nuevo2\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.pdb
 C:\Users\DELL\Desktop\pasantias\nuevo2\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.csprojAssemblyReference.cache
+
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\bin\Debug\netcoreapp2.0\ServicuerosSA.deps.json
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\bin\Debug\netcoreapp2.0\ServicuerosSA.runtimeconfig.json
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\bin\Debug\netcoreapp2.0\ServicuerosSA.runtimeconfig.dev.json
@@ -22,3 +23,4 @@ C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreap
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.AssemblyInfo.cs
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.dll
 C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.pdb
+

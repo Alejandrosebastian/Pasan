@@ -26,6 +26,7 @@ namespace ServicuerosSA.Models
                          where cur.BomboId == id && cur.Activo == true
                          select new
                          {
+                             cur.CurtidoId,
                              cur.codigolote,
                              cur.NPieles,
                              cur.Fecha,
@@ -36,6 +37,8 @@ namespace ServicuerosSA.Models
             foreach (var item in datos.ToList())
             {
                 html += "<tr>" +
+                    "<td hidden>" + item.CurtidoId +  "</td>" +
+                     "<td>" + "<input type='checkbox' class='form-control' />" + "</td>" +
                     "<td>" + item.codigolote + "</td>" +
                     "<td>" + item.NPieles + "</td>" +
                     "<td>" + item.Peso + "</td>" +
@@ -170,9 +173,9 @@ namespace ServicuerosSA.Models
             foreach(var item in escu)
             {
                 list += "<tr>"+
-                     "<td>" +
-                    "<input type='checkbox' class='form-control'  value=" + item.CurtidoId + "|" + item.CodigoLote + "|" + item.Cantidad + "|" + item.Detalle + " />" +
-                    "</td>" +
+                    // "<td>" +
+                    //"<input type='checkbox' class='form-control'  value=" + item.CurtidoId + "|" + item.CodigoLote + "|" + item.Cantidad + "|" + item.Detalle + " />" +
+                    //"</td>" +
                     "<td>" + item.CodigoLote + "</td>" +
                     "<td>" + item.Cantidad + "</td>" +
                     "<td>" + item.Fecha + "</td>" +

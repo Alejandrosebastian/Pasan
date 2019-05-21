@@ -13375,11 +13375,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\gpare\\Desktop\\git\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
       "projectName": "ServicuerosSA",
       "projectPath": "C:\\Users\\gpare\\Desktop\\git\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
       "packagesPath": "C:\\Users\\gpare\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\gpare\\Desktop\\git\\Pasan\\ServicuerosSA\\ServicuerosSA\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
+      "projectName": "ServicuerosSA",
+      "projectPath": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\ServicuerosSA.csproj",
+      "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\DELL\\Desktop\\p\\Pasan\\ServicuerosSA\\ServicuerosSA\\obj\\",
+>>>>>>> 5eae0a946480214247872a9d34829379d1457574
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
