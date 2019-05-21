@@ -33,7 +33,7 @@ class Formulas {
             data: { id },
             success: (respuesta) => {
 
-                $('#codigo').text(respuesta[0].codigo);
+                //$('#codigo').text(respuesta[0].codigo);
                 $('#codigoquimico').text(respuesta[0].codigo);
                 $('#version').text(respuesta[0].version);
                 $('#fecha_act').text(respuesta[0].fechaCreacionFormula);
@@ -46,7 +46,7 @@ class Formulas {
                 $('#vigencia').text(respuesta[0].fechaImpresion);
                 $('#pagina').text(respuesta[0].pagina);
                 $('#fecha').text(respuesta[0].fecha);
-                $('#parada').text(respuesta[0].parada);
+                $('#parada').text(respuesta[0].codigo);
                 $('#bombo').text(respuesta[0].bombo);
                 $('#bomboquimico').text(respuesta[0].bombo);
                 $('#peso').text(respuesta[0].peso);
@@ -56,7 +56,7 @@ class Formulas {
                 $('#promedio').text(respuesta[0].promedio);
                 $('#PromedioQuimico').text(respuesta[0].promedio);
                 $('#autorizado').text(respuesta[0].nombreAutoirzado);
-                $('#procesado').text(respuesta[0].nombreProcesado);
+                //$('#procesado').text(respuesta[0].nombreProcesado);
                 $('#procesadoquimico').text(respuesta[0].nombreAutoirzado);
                 $('#entregado').text(respuesta[0].nombreEntregado);
             }

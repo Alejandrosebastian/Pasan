@@ -94,10 +94,10 @@
                                 console.log(respuesta);
                                 if (respuesta[0].code == "ok") {
                                     $('#IngresoEscurrido').modal('hide');
-                                    ListaIndexEscurrido;
                                     swal("Escurrido", "Se guardo exitosamente", "success");
                                     this.limpiarcajas();
                                     this.limpiarcajarEscurrido();
+                                    ListaIndexEscurrido;
                                 } else {
                                     this.limpiarcajas();
                                     this.limpiarcajarEscurrido();

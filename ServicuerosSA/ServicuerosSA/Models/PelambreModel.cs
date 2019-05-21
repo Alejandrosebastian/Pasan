@@ -440,7 +440,7 @@ namespace ServicuerosSA.Models
                            FechaValida = DateTime.Now.ToString(),
                            NombreEntregado = pe.Nombres + " " + pe.Apellidos,
                            NombreProcesado = fo.TipoProceso,
-                           Codigo = p.CodigoLote + p.Codigo,
+                           Codigo = p.CodigoLote,
                            Parada = p.PelambreId.ToString(),
                            Peso = p.Peso.ToString(),
                            Promedio = (p.Peso / p.TotalPieles).ToString(),
