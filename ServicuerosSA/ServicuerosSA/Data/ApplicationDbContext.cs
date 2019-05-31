@@ -66,6 +66,8 @@ namespace ServicuerosSA.Data
         public DbSet<ServicuerosSA.Models.Clasiweb> ClasificacionesWebblue { get; set; }
         public DbSet<ServicuerosSA.Models.Medido> Medido { get; set; }
         public DbSet<ServicuerosSA.Models.Calibracion> Calibracion { get; set; }
+       
+        public DbSet<ServicuerosSA.Models.BodegaCarnaza> BodegaCarnaza_1 { get; set; }
     }
 
 }

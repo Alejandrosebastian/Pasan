@@ -213,6 +213,7 @@ namespace ServicuerosSA.Models
         
             return listatripa;
         }
+      
         public List<object[]> ModeloImprimirCarnaza()
         {
             List<object[]> lista = new List<object[]>();

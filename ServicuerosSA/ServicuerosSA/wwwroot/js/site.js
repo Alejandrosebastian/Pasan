@@ -101,6 +101,12 @@ var listadescarne = () => {
     var lisdescarnes = new BodegaTripa('', '','', '', '', '', '','', accion);
     lisdescarnes.ClaseListadescarnes();
 }
+var listacarnaza = () => {
+        
+    var accion = '../BodegaCarnaza/Controladorlistadescarne';
+    var listacarna = new BodegaCarnaza('', '', accion);
+    listacarna.ClaseListadescarne();
+}
 ///LISTA ESCURRIDO
 var listaIndexescurrido = () => {
     var accion = 'Escurridos/ControladorListaEscurrido';
@@ -382,7 +388,24 @@ var GuardaDescarne = () => {
     var guades = new Descarne(pelambre,cantidad,d,personal,codigolote,fech,accion);
     guades.GuardarPelambre();
 }
+/////GuardaCarnaza
+var GuardaCarnaza = () => {
+    var accion = 'BodegaCarnazas/ControladorGuardaCarnaza';
+    var lotes = document.getElementById("Descarneid");
+    var lote = lotes.options[lotes.selectedIndex].value;
+    var codigo = lotes.options[lotes.selectedIndex].text;
 
+    var peso = document.getElementById("PesoInput").text;
+
+    var medidas = document.getElementById("MedidaId");
+    var medida = medidas.options[medidas.selectedIndex].value;
+
+    var personales = document.getElementById("personalId");
+    var personal = personales.options[personales.selectedIndex].value;
+
+    var guarda = new BodegaCarnaza(codigo, peso, accion);
+    guarda.GuardaCarnaza();
+}
 ///////// guardar clasificacion en tripa
 var Guardarbodetripas = () => {
     var accion = 'BodegaTripas/Controladorguardabodetripas';
@@ -612,54 +635,6 @@ var guardarCurtido = () => {
             var clase = new Curtidojs(BodegaTripaId, bomboId, NumeroPieles, MedidaId, formulaId, fecha, peso, BodegaId, personalId, fech, CodigoLote, accion);
              clase.Guardacurtido();
         });
-    });
-}
-var GuardaEscurrido = () => {
-    var accion = 'Escurridos/Controladordurdaescurrdio';
-    //var curtidos = document.getElementById("CurtidoId");
-    //var curtido = curtidos.options[curtidos.selectedIndex].value;
-    var bombos = document.getElementById("bomboId");
-    var bombo = bombos.options[bombos.selectedIndex].value;
-    var cantidad = document.getElementById("Cantidad").value;
-    //var codigolotecurt = curtidos.options[curtidos.selectedIndex].text;
-    var personales = document.getElementById("personalId");
-    var personal = personales.options[personales.selectedIndex].value;
-    var d = new Date();
-    var fecha = d.getDate();
-    var dt = new Date();
-    var month = dt.getMonth() + 1;
-    var day = dt.getDate();
-    var year = dt.getFullYear();
-    $('#ListaEscurrido tr').each(function () {
-        var celdas = $(this).find('td');
-        var codigolote = $(celdas[2]).html();
-        var numpieles = $(celdas[3]).html();
-        var peso = $(celdas[4]).html();
-        var titrip = $(celdas[5]).html();
-        var CurtidoId = $(celdas[0]).html();
-        var fech = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
-        var n1 = parseInt(cantidad);
-        var n2 = parseInt(numpieles);
-        $(this).find("input:checkbox:checked").each(() => {
-            var cantidades = + $(celdas[3]);
-            alert(cantidades);
-
-        });
-        //if (n1 == n2) {
-        //    $(this).find("input:checkbox:checked").each(() => {
-        //        var guarda = new Escurrido(bombo, cantidad, codigolote, fecha, CurtidoId, personal, fech, accion);
-        //        guarda.Guardaescurrdio();
-        //    });
-        //} else {
-        //    var sum = n1 - n2;
-        //    $(this).find("input:checkbox:checked").each(() => {
-        //        var guarda = new Escurrido(bombo, sum, codigolote, fecha, CurtidoId, personal, fech, accion);
-        //        guarda.Guardaescurrdio();
-        //    });
-        //}
-
-       
-
     });
 }
 var listatripas = () => {
