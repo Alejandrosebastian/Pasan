@@ -243,7 +243,7 @@ namespace ServicuerosSA.Controllers
         {
             return _context.Curtido.Where(c => c.codigolote == id && c.Activo == true).Sum(c => c.NPieles);
         }
-        public List<IdentityError> Controladordurdaescurrdio(int bombo, int cantidad, string codigolote, DateTime fecha, string curtido, int personal, string codiuniescurridio)
+        public List<IdentityError> Controladordurdaescurrdio(int bombo, int cantidad, string codigolote, DateTime fecha, int curtido, int personal, string codiuniescurridio)
         {
             return listacurtido.GuardarEscurrido(bombo, cantidad, codigolote, fecha, curtido, personal, codiuniescurridio);
         }

@@ -638,28 +638,10 @@ var GuardaEscurrido = () => {
         var titrip = $(celdas[5]).html();
         var CurtidoId = $(celdas[0]).html();
         var fech = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
-        var n1 = parseInt(cantidad);
-        var n2 = parseInt(numpieles);
-        $(this).find("input:checkbox:checked").each(() => {
-            var cantidades = + $(celdas[3]);
-            alert(cantidades);
-
-        });
-        //if (n1 == n2) {
-        //    $(this).find("input:checkbox:checked").each(() => {
-        //        var guarda = new Escurrido(bombo, cantidad, codigolote, fecha, CurtidoId, personal, fech, accion);
-        //        guarda.Guardaescurrdio();
-        //    });
-        //} else {
-        //    var sum = n1 - n2;
-        //    $(this).find("input:checkbox:checked").each(() => {
-        //        var guarda = new Escurrido(bombo, sum, codigolote, fecha, CurtidoId, personal, fech, accion);
-        //        guarda.Guardaescurrdio();
-        //    });
-        //}
-
-       
-
+         $(this).find("input:checkbox:checked").each(() => {
+                var guarda = new Escurrido(bombo, cantidad, codigolote, fecha, CurtidoId, personal, fech, accion);
+                guarda.Guardaescurrdio();
+         });
     });
 }
 var listatripas = () => {
@@ -707,7 +689,7 @@ var controlpielesescurrir = () => {
         var CurtidoId = $(celdas[0]).html();
         
     var canti = document.getElementById("Cantidad").value;
-        if (parseInt(canti) >= parseInt(numpieles)) {
+        if (parseInt(canti) > parseInt(numpieles)) {
        $("#mensajeca").removeClass("hidden");
         $("#guarda").prop('disabled', true);
     } else {

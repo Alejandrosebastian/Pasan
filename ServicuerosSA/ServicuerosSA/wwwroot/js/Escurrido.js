@@ -17,7 +17,6 @@
             url: accion,
             data: {},
             success: (respuesta) => {
-                
                 $.each(respuesta, (index, val) => {
                     $('#EscurridoLista').html(val[0]);
                 });
@@ -56,11 +55,8 @@
             }
         });
     }
-    Guardaescurrdio() {
-        if (this.curtidos == '0') {
-            $("mensajees").remove.removeClass("hidden");
-        } else {
-            $("mensajees").addClass("hidden");
+        Guardaescurrdio()
+        {
             if (this.Bombo == '0') {
                 $("mensajebo").remove.removeClass("hidden");
             } else {
@@ -97,10 +93,9 @@
                                     ListaIndexEscurrido;
                                     swal("Escurrido", "Se guardo exitosamente", "success");
                                     this.limpiarcajas();
-                                    this.limpiarcajarEscurrido();
+                                    
                                 } else {
-                                    this.limpiarcajas();
-                                    this.limpiarcajarEscurrido();
+                                    
                                     swal("Escurrido", "Ocurrio un error", "error");
 
                                 }
@@ -112,12 +107,10 @@
                 }
 
             }
-        }
-    }
+        
+          }
 
-    limpiarcajarEscurrido() {
-        document.getElementById("CurtidoId").options.length = 1;
-    }
+   
  
     NumeroPielesCurtido(id) {
         var accion = this.accion;
@@ -149,13 +142,9 @@
     }
     limpiarcajas() {
         document.getElementById('Cantidad').value = '';
-        document.getElementById('CurtidoId').selectedIndex = 0;
         document.getElementById('fecha').selectedIndex = 0;
-        document.getElementById('codigolotecurt').value = '';
         document.getElementById('bomboId').value = '';
-        document.getElementById('TotalPielesInput').value = '';
         ListaIndexEscurrido;
-        this.limpiarcajarEscurrido();
         $('#IngresoEscurrido').modal('hidden');
 
     }

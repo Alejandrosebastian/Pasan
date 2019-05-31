@@ -123,7 +123,7 @@ namespace ServicuerosSA.Models
                 {
                     Calibracion dato = new Calibracion()
                     {
-                        CalibracionId = calibradonuevo.CalibracionId,
+                        
                         bombo = calibradonuevo.bombo,
                         CantidadA = calibradonuevo.CantidadA - Convert.ToInt32(cantidad),
                         CantidadB = calibradonuevo.CantidadB,
