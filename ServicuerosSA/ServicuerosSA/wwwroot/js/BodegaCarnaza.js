@@ -1,7 +1,7 @@
 ﻿class BodegaCarnaza {
     constructor(codigo, peso,tripa,bodega, accion)
     {
-        this.codigo = codigo; 
+        this.codigo = codigo;
         this.peso = peso;
         this.tripa = tripa;
         this.bodega = bodega;
