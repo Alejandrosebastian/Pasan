@@ -4,10 +4,17 @@
     ViewData["Title"] = "Registro de Clasificacion WebBlue";
 }
 
+<<<<<<< HEAD
 <h2>Lista de clasificaciones</h2>
 
 <p>
     <a class="btn btn-success" asp-action="Create">Crear nueva clasificacion</a>
+=======
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+>>>>>>> parent of 6d29410... css
 </p>
 <table class="table">
     <thead>
@@ -25,9 +32,15 @@
                 @Html.DisplayFor(modelItem => item.Detalle)
             </td>
             <td>
+<<<<<<< HEAD
                 <a class="btn btn-primary" asp-action="Edit" asp-route-id="@item.clasiwebId">Editar</a> |
                 <a class="btn btn-info" asp-action="Details" asp-route-id="@item.clasiwebId">Detalles</a> |
                 <a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.clasiwebId">Eliminar</a>
+=======
+                <a asp-action="Edit" asp-route-id="@item.clasiwebId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.clasiwebId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.clasiwebId">Delete</a>
+>>>>>>> parent of 6d29410... css
             </td>
         </tr>
 }
