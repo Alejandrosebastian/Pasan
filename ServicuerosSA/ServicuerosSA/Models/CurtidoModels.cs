@@ -129,12 +129,11 @@ namespace ServicuerosSA.Models
                               where cu.codicurtido == id
                               select cu).FirstOrDefault();
 
-                var res = (from cu in _contexto.Curtido
+            var res = (from cu in _contexto.Curtido
                        join pe in _contexto.Personal on cu.PersonalId equals pe.PersonalId
                        join b in _contexto.Bombo on cu.BomboId equals b.BomboId
                        join fo in _contexto.Formula on cu.FormulaId equals fo.FormulaId
                        join tp in _contexto.TipoPiel on fo.TipoPielId equals tp.TipoPielId
-                       
                        
                        where cu.CurtidoId == consultaid.CurtidoId
                        select new ModeloEncabezadoFormula
@@ -147,8 +146,9 @@ namespace ServicuerosSA.Models
                            FechaValida = DateTime.Now.ToString(),
                            NombreEntregado = pe.Nombres + " " + pe.Apellidos,
                            NombreProcesado = fo.TipoProceso,
-                          Parada= cu.codigolote,
-                          Peso = cu.Peso.ToString(),
+                           Codigo = cu.codicurtido,
+                           Parada = cu.CurtidoId.ToString(),
+                           Peso = cu.Peso.ToString(),
                            Promedio = (cu.Peso / cu.NPieles).ToString(),
                            Version = fo.Version,
                            TipoPiel = tp.Detalle
@@ -182,7 +182,7 @@ namespace ServicuerosSA.Models
                  dato += "<tr>" +
                 "<td>" + item.Detalle.ToUpper() + "</td>" +
                 "<td>" + item.Porcentaje.ToUpper() + "</td>" +
-                "<td>" +(pesototal * Double.Parse(item.Porcentaje)) / 100 + "</td>" +
+                "<td>" + (pesototal * Double.Parse(item.Porcentaje)) / 100 + "</td>" +
                 "<td>" + item.Observaciones + "</td>" +
                 "<td> </td>" +
                 "</tr>";
@@ -205,9 +205,8 @@ namespace ServicuerosSA.Models
                         join me in _contexto.Medida on cu.MedidaId equals me.MedidaId
                         join bode in _contexto.Bodega on cu.BodegaId equals bode.BodegaId
                         select new
-                        {   cu.codigolote,
-                            cu.NPieles,
-                            fecha = cu.Fecha,
+                        {
+                            fecha = DateTime.Now,
                             bode.NombreBodega,
                             clasi.Detalle,
                             cu.Peso,
@@ -219,8 +218,6 @@ namespace ServicuerosSA.Models
             foreach (var item in i)
             {
                 imprime += "<tr>" +
-                     "<td>" + item.codigolote + "</td>" +
-                    "<td>" + item.NPieles + "</td>" +
                     "<td>" + item.fecha + "</td>" +
                     "<td>" + item.NombreBodega + "</td>" +
                     "<td>" + item.Detalle + "</td>" +
@@ -248,9 +245,7 @@ namespace ServicuerosSA.Models
                        where cu.Activo == true
                        select new
                        {
-                           cu.codigolote,
-                           cu.NPieles,
-                           fecha = cu.Fecha,
+                           fecha = DateTime.Now,
                            bode.NombreBodega,
                            clasi.Detalle,
                            cu.Peso,
@@ -265,8 +260,6 @@ namespace ServicuerosSA.Models
             foreach (var item in cur)
             {
                 dato += "<tr>" +
-                    "<td>" + item.codigolote + "</td>" +
-                     "<td>" + item.NPieles + "</td>" +
                     "<td style= width: auto> " + item.fecha + "</td>" +
                     "<td>" + item.NombreBodega + "</td>" +
                     "<td>" + item.Detalle + "</td>" +

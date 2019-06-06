@@ -8,7 +8,6 @@
     <a href="#" class="btn btn-success" data-toggle="modal" data-target="#IngresoClasificacionTripa" onclick="listaPersonal(); Listatipotripa(); listadescarne(); bodegastri(); medidas();">Nueva Clasificacion</a>
     <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#ImpresionClasiTripa" onclick=" ImprimirClasiTripa();">Reporte de Clasificación en Tripa</a>
     <a href="#" class="btn btn-info" data-toggle="modal" data-target="#ImpresionCarnaza" onclick="ImprimirCarnaza();">Reporte de Clasificación en Carnaza</a>
-    <a href="#" class="btn btn-danger" data-toggle="modal" data-target="#IngresoCarnaza" onclick="listaPersonal(); listacarnaza(); medidas();">Ingreso de Carnaza</a>
 
 </p>
 <table class="table">
@@ -135,64 +134,7 @@
         </div>
     </div>
 </div>
-@*INGRESO CARNAZA*@
-<div class="modal fade" id="IngresoCarnaza" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close"
-                        data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>Carnaza
-                </button>
-                <h4 class="modal-title"
-                    id="EtiquetaModal">
-                    Ingreso de Carnaza
-                </h4>
-            </div>
-            <div class="modal-body">
-                <form>
-                    <div class="form-group">
-                        <label class="control-label">Codigo Lote</label>
-                        <select id="Descarneid" name="Descarneid" required class="form-control" onchange="numeropielestripa();">
-                            <option value="0">Seleccione el Lote </option>
-                        </select>
-                        <br />
-                        <span id="mensajede" class="alert alert-danger hidden">Seleccione el Codigo de lote:</span>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="control-label">Peso</label>
 
-                        <input id="PesoInput" type="number" name="PesoInput" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Medida</label>
-                        <select id="MedidaId" name="MedidaId" required class="form-control">
-                            <option value="0">Seleccione una medida</option>
-                        </select>
-                        <br />
-                        <span id="mensajeme" class="alert alert-danger hidden">--Seleccione una medida</span>
-                    </div>
-                    <div class="form-group">
-                        <label class="control-label">Personal</label>
-                        <select id="personalId" name="personalId" required class="form-control">
-                            <option value="0">Seleccione el Personal asignado a esta operación</option>
-                        </select>
-                        <br />
-                        <span id="mensajeper" class="alert alert-danger hidden">Seleccione al Personal</span>
-                    </div>
-
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="graba" name="graba" onclick="Guardarbodetripas()">Guardar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-@*************************@
 @*IMPRESION REPORTE*@
 <div class="modal fade" id="ImpresionClasiTripa" tabindex="-1" role="dialog" aria-labelledby="EtiquetaModal">
     <div class="modal-dialog" role="document">
@@ -276,8 +218,12 @@
                                         NumeroPieles
                                     </th>
                                     <th>
+                                        ClasificacionTripa
+                                    </th>
+                                    <th>
                                         Peso
                                     </th>
+
                                 </tr>
 
                             </thead>

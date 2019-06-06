@@ -72,36 +72,28 @@ namespace ServicuerosSA.Models
             }
             return lista;
         }
-        public List<IdentityError> GuardarEscurrido(int bombo, int cantidad, string codilote, DateTime fecha, string curtido, int personal, string codiuniescurridio)
+        public List<IdentityError> GuardarEscurrido(int bombo, int cantidad, string codilote, DateTime fecha, int curtido, int personal, string codiuniescurridio)
         {
             List<IdentityError> listaerror = new List<IdentityError>();
-            List<curtidolis> curtilista = (from cu in _contexto.Curtido
-                                              where cu.CurtidoId == Convert.ToInt32(curtido)
-                                              select new curtidolis
-                                              {
-                                                  activo = cu.Activo,
-                                                  BomboId = cu.BomboId,
-                                                  codigolote = cu.codigolote,
-                                                  npieles = cu.NPieles,
-                                                  PersonalId = cu.PersonalId,
-                                                  BodegaId = cu.BodegaId,
-                                                  curtidoId = cu.CurtidoId,
-                                                  fecha = cu.Fecha,
-                                                  BodegaTripaId = cu.BodegaTripaId,
-                                                  MedidaId = cu.MedidaId,
-                                                  FormulaId = cu.FormulaId,
-                                                  observaciones = cu.Observaciones,
-                                                  codicurtido= cu.codicurtido,
-                                                  peso = cu.Peso
-                                              }).ToList();
-            foreach (var item in curtilista)
+            List<Curtidolista> curtilis = (from cur in _contexto.Curtido
+                                         where cur.codicurtido == codiuniescurridio
+                                           select new Curtidolista
+                                         {
+                                             Activo = cur.Activo,
+                                             codigolote = cur.codigolote,
+                                             codicurtido = cur.codicurtido,
+                                             Fecha = cur.Fecha,
+                                             NPieles = cur.NPieles,
+                                             curtidoId = cur.CurtidoId,
+                                             Peso = cur.Peso,
+                                             Observaciones = cur.Observaciones
+                                         }).ToList();
+            try
             {
-                try
-                {
                     var guardaescurrido = new Escurrido
                     {
                         
-                        CurtidoId = item.curtidoId,
+                        CurtidoId =Convert.ToInt32(curtido),
                         BomboId = bombo,
                         Cantidad = cantidad,
                         CodigoLote = codilote,
@@ -112,9 +104,9 @@ namespace ServicuerosSA.Models
                     };
                     _contexto.Escurrido.Add(guardaescurrido);
                     _contexto.SaveChanges();
-
+                        /////desactivo atras
                     Curtido curt = (from curti in _contexto.Curtido
-                                     where curti.CurtidoId == item.curtidoId
+                                     where curti.CurtidoId == curtido
                                     select new Curtido
                                      {
                                          Activo =false,
@@ -134,23 +126,67 @@ namespace ServicuerosSA.Models
                                      }).FirstOrDefault();
                     _contexto.Curtido.Update(curt);
                     _contexto.SaveChanges();
-                    listaerror.Add(new IdentityError
+                    
+                    var escurrdionuevo = (from curti in _contexto.Curtido
+                                          where curti.CurtidoId == curtido
+                                          select new Curtido
+                                          {
+                                              Activo = false,
+                                              BomboId = curti.BomboId,
+                                              codigolote = curti.codigolote,
+                                              NPieles = curti.NPieles,
+                                              PersonalId = curti.PersonalId,
+                                              BodegaId = curti.BodegaId,
+                                              CurtidoId = curti.CurtidoId,
+                                              Fecha = curti.Fecha,
+                                              BodegaTripaId = curti.BodegaTripaId,
+                                              MedidaId = curti.MedidaId,
+                                              FormulaId = curti.FormulaId,
+                                              Observaciones = curti.Observaciones,
+                                              codicurtido = curti.codicurtido,
+                                              Peso = curti.Peso
+                                          }).FirstOrDefault();
+                if ((Convert.ToInt32(escurrdionuevo.NPieles) - Convert.ToInt32(cantidad)) > 0)
+                {
+                    Curtido dato = new Curtido()
                     {
+                       
+                        BomboId = escurrdionuevo.BomboId,
+                        codigolote = escurrdionuevo.codigolote,
+                        NPieles = escurrdionuevo.NPieles - Convert.ToInt32(cantidad),
+                        BodegaTripaId = escurrdionuevo.BodegaTripaId,
+                        BodegaId = escurrdionuevo.BodegaId,
+                        PersonalId = escurrdionuevo.PersonalId,
+                        FormulaId = escurrdionuevo.FormulaId,
+                        Fecha =escurrdionuevo.Fecha,
+                        MedidaId = escurrdionuevo.MedidaId,
+                        Observaciones = escurrdionuevo.Observaciones,
+                        Peso= escurrdionuevo.Peso,
+                        codicurtido = escurrdionuevo.codicurtido,
+                        Activo = true
+                    };
+                    _contexto.Curtido.Add(dato);
+                    _contexto.SaveChanges();
+                }
+
+                listaerror.Add(new IdentityError
+                {
                         Code = "ok",
                         Description = "ok"
-                    });
-                }
-                catch(Exception e)
+                });
+            }
+            catch(Exception e)
+            {
+                listaerror.Add(new IdentityError
                 {
-                    listaerror.Add(new IdentityError
-                    {
                         Code= e.Message,
                         Description = e.Message
-                    });
-                }
+                });
             }
-            return listaerror; 
-        }
+            return listaerror;
+        }       
+        
+        
         public List<object[]> ModeloListaEscurrido()
         {
             List<object[]> lista = new List<object[]>();

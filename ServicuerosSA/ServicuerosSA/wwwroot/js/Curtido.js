@@ -61,10 +61,10 @@
                         success: (respuesta) => {
                             if (respuesta[0].code == "ok") {
                                 $('#IngresoCurtido').modal('hide');
-                                ListaIndexCurt();
                                 swal("Curtido", "Se guardo exitosamente", "success");
+                                ListaIndexCurt();
                                 this.limpiarcajas();
-                               } else {
+                            } else {
                                 this.limpiarcajas();
                                 swal("Curtido", "Ocurrio un error", "error");
                             }
@@ -126,7 +126,7 @@
             data: { id },
             success: (respuesta) => {
                 console.log(respuesta);
-                //$('#codigo').text(respuesta[0].codigo);
+                $('#codigo').text(respuesta[0].codigo);
                 $('#codigoquimico').text(respuesta[0].codigo);
                 $('#version').text(respuesta[0].version);
                 $('#fecha_act').text(respuesta[0].fechaCreacionFormula);
@@ -139,7 +139,7 @@
                 $('#vigencia').text(respuesta[0].fechaImpresion);
                 $('#pagina').text(respuesta[0].pagina);
                 $('#fecha').text(respuesta[0].fecha);
-                $('#parada').text(respuesta[0].codigolote);
+                $('#parada').text(respuesta[0].parada);
                 $('#bombo').text(respuesta[0].bombo);
                 $('#bomboquimico').text(respuesta[0].bombo);
                 $('#peso').text(respuesta[0].peso);
@@ -149,7 +149,7 @@
                 $('#promedio').text(respuesta[0].promedio);
                 $('#PromedioQuimico').text(respuesta[0].promedio);
                 $('#autorizado').text(respuesta[0].nombreAutoirzado);
-                //$('#procesado').text(respuesta[0].nombreProcesado);
+                $('#procesado').text(respuesta[0].nombreProcesado);
                 $('#procesadoquimico').text(respuesta[0].nombreAutoirzado);
                 $('#entregado').text(respuesta[0].nombreEntregado);
             }
