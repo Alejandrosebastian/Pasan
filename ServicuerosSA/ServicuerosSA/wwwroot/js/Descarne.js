@@ -99,7 +99,7 @@ class Descarne {
                     if (0 < respuesta.length) {
                         console.log(respuesta);
                         for (var i = 0; i < respuesta.length; i++) {
-                            document.getElementById('PelambreId').options[contador] = new Option(respuesta[i].codigo , respuesta[i].codigopelambre);
+                            document.getElementById('PelambreId').options[contador] = new Option(respuesta[i].codigo , respuesta[i].pelambreId);
                             contador++;
                         }
                     }

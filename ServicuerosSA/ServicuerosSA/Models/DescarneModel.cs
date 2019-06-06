@@ -17,7 +17,7 @@ namespace ServicuerosSA.Models
         }
         public List<Pelambre> Modelolistapelambres()
         {
-            return _contexto.Pelambre.Where(p => p.Activo == true).GroupBy(p => p.CodigoLote + p.Codigo).Select(p => p.First()).Distinct().ToList();
+            return _contexto.Pelambre.Where(p => p.Activo == true).GroupBy(p => p.Codigo).Select(p => p.First()).Distinct().ToList();
         }
         //Completar la consulta con el total de pieles d descarne falta
         public List<object[]> ClaseListaDescarne()
@@ -54,8 +54,8 @@ namespace ServicuerosSA.Models
 
         {
             List<IdentityError> Listaerrores = new List<IdentityError>();
-            List<PelambreListaId> pelambreLista = (from ya in _contexto.Pelambre
-                                                  where  ya.codigopelambre == pelambre
+            PelambreListaId pelambreLista = (from ya in _contexto.Pelambre
+                                                  where  ya.PelambreId == Convert.ToInt32(pelambre)
                                                   select new PelambreListaId {
                                                       Activo = ya.Activo,
                                                       BodegaId1 = ya.Bodega1Id,
@@ -70,16 +70,14 @@ namespace ServicuerosSA.Models
                                                       observaciones = ya.Observaciones,
                                                       fecha = ya.Fecha,
                                                       pelambreId = ya.PelambreId
-                                                  }).ToList();
+                                                  }).First();
 
-
-            foreach (var item in pelambreLista)
-            {
+           
                 try
                 {
                     var guardarDescarne = new Descarne
                     {
-                        PelambreId = item.pelambreId,
+                        PelambreId = pelambreLista.pelambreId,
                         Activo = true,
                         Cantidad = cantidad,
                         PersonalId = personal,
@@ -89,10 +87,8 @@ namespace ServicuerosSA.Models
                     };
                     _contexto.Descarne.Add(guardarDescarne);
                     _contexto.SaveChanges();
-
-
                     Pelambre pe = (from p in _contexto.Pelambre
-                                   where p.PelambreId == item.pelambreId
+                                   where p.PelambreId == pelambreLista.pelambreId
                                    select new Pelambre
                                    {
                                        Activo = false,
@@ -124,7 +120,7 @@ namespace ServicuerosSA.Models
                         Description = e.Message
                     });
                 }
-            }
+            
               
 
                      
