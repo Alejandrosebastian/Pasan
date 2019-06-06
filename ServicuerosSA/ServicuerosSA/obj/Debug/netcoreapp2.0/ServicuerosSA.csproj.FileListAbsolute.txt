@@ -22,10 +22,3 @@ C:\Users\DELL\Desktop\p\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.
 C:\Users\DELL\Desktop\p\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.dll
 C:\Users\DELL\Desktop\p\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.pdb
 C:\Users\DELL\Desktop\p\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.csprojAssemblyReference.cache
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.csprojAssemblyReference.cache
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.csproj.CoreCompileInputs.cache
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\UserSecretsAssemblyInfo.cs
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.AssemblyInfoInputs.cache
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.AssemblyInfo.cs
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.dll
-C:\Users\gpare\Desktop\git\Pasan\ServicuerosSA\ServicuerosSA\obj\Debug\netcoreapp2.0\ServicuerosSA.pdb

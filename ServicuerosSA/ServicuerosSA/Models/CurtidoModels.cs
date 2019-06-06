@@ -145,9 +145,9 @@ namespace ServicuerosSA.Models
                            NombreAutoirzado = pe.Nombres + " " + pe.Apellidos,
                            FechaValida = DateTime.Now.ToString(),
                            NombreEntregado = pe.Nombres + " " + pe.Apellidos,
-                           NombreProcesado = fo.TipoProceso,
-                           Codigo = cu.codicurtido,
-                           Parada = cu.CurtidoId.ToString(),
+    
+                           //Codigo = cu.codicurtido,
+                           Parada = cu.codigolote,
                            Peso = cu.Peso.ToString(),
                            Promedio = (cu.Peso / cu.NPieles).ToString(),
                            Version = fo.Version,
@@ -183,8 +183,9 @@ namespace ServicuerosSA.Models
                 "<td>" + item.Detalle.ToUpper() + "</td>" +
                 "<td>" + item.Porcentaje.ToUpper() + "</td>" +
                 "<td>" + (pesototal * Double.Parse(item.Porcentaje)) / 100 + "</td>" +
-                "<td>" + item.Observaciones + "</td>" +
+                 "<td> </td>" +
                 "<td> </td>" +
+                "<td>" + item.Observaciones + "</td>" +
                 "</tr>";
             }
             object[] objeto = { dato };

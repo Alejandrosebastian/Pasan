@@ -1,17 +1,11 @@
 ﻿@model IEnumerable<ServicuerosSA.Models.BodegaCarnaza>
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Index";
 }
 
-<!DOCTYPE html>
+<h2>Index</h2>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
 <p>
     <a asp-action="Create">Create New</a>
 </p>
@@ -24,6 +18,9 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Codigo)
                 </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BodegaGeneral)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Bodegatripas)
             </th>
@@ -40,6 +37,9 @@
                 @Html.DisplayFor(modelItem => item.Codigo)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.BodegaGeneral.NombreBodega)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Bodegatripas.BodegaTripaId)
             </td>
             <td>
@@ -51,5 +51,3 @@
 }
     </tbody>
 </table>
-</body>
-</html>

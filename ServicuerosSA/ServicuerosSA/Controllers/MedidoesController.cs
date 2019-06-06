@@ -42,9 +42,9 @@ namespace ServicuerosSA.Controllers
             return listaIndexMedidos.ModelolistaindexMedido();
         }
             
-        public List<IdentityError> ControladorguardaMedido(string codigolote, DateTime fecha, int calibracion, int cantidad, string pallet, Decimal area, int bodega, int personal, string tipo, string clasiweb, int estan)
+        public List<IdentityError> ControladorguardaMedido(string codigolote, DateTime fecha, int calibracion, int cantidad, string pallet, Decimal area, int bodega, int personal, string tipo, string clasiweb, int estan, string codiunimedido)
         {
-            return claseguarda.ClaseguardaMedido(codigolote, fecha, calibracion, cantidad, pallet, area, bodega, personal,tipo,clasiweb,estan);
+            return claseguarda.ClaseguardaMedido(codigolote, fecha, calibracion, cantidad, pallet, area, bodega, personal,tipo,clasiweb,estan, codiunimedido);
         }
         // GET: Medidoes
         public async Task<IActionResult> Index()

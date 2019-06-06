@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ServicuerosSA.Data;
@@ -14,32 +13,24 @@ namespace ServicuerosSA.Controllers
     public class BodegaCarnazasController : Controller
     {
         private readonly ApplicationDbContext _context;
-        private BodegaCarnazaModel listaCarnaza;
-        private ClasificacionTripaModel listatipotripa;
-        private BodegaCarnazaModel guardaCarnaza;
+        private BodegaCarnazaModel listacarnaza;
+
         public BodegaCarnazasController(ApplicationDbContext context)
         {
             _context = context;
-            listaCarnaza = new BodegaCarnazaModel(context);
-            listatipotripa = new ClasificacionTripaModel(context);
-            guardaCarnaza = new BodegaCarnazaModel(context);
+            listacarnaza = new BodegaCarnazaModel(context);
         }
-        //GuardaCarnaza
-        public List<IdentityError> ControladorGuardaCarnaza(string codigo, decimal peso)
-        {
-            return guardaCarnaza.ClaseguardaCarnaza(codigo, peso);
-        }
-        public List<Descarne> Controladorlistadescarne()
-        {
-            return listatipotripa.Claselistadescarnes();
-        }
+
         // GET: BodegaCarnazas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.BodegaCarnaza_1.Include(b => b.Bodegatripas);
+            var applicationDbContext = _context.BodegaCarnaza.Include(b => b.BodegaGeneral).Include(b => b.Bodegatripas);
             return View(await applicationDbContext.ToListAsync());
         }
-
+        public List<Descarne> controladorcarnaza()
+        {
+            return listacarnaza.modelolistacarnaza();
+        }
         // GET: BodegaCarnazas/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -48,7 +39,8 @@ namespace ServicuerosSA.Controllers
                 return NotFound();
             }
 
-            var bodegaCarnaza = await _context.BodegaCarnaza_1
+            var bodegaCarnaza = await _context.BodegaCarnaza
+                .Include(b => b.BodegaGeneral)
                 .Include(b => b.Bodegatripas)
                 .SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
             if (bodegaCarnaza == null)
@@ -62,6 +54,7 @@ namespace ServicuerosSA.Controllers
         // GET: BodegaCarnazas/Create
         public IActionResult Create()
         {
+            ViewData["BodegaId"] = new SelectList(_context.Bodega, "BodegaId", "NombreBodega");
             ViewData["BodegaTripaId"] = new SelectList(_context.Bodegatripa, "BodegaTripaId", "BodegaTripaId");
             return View();
         }
@@ -71,7 +64,7 @@ namespace ServicuerosSA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("BodegaCarnazaId,Cantidad,Codigo,BodegaTripaId")] BodegaCarnaza bodegaCarnaza)
+        public async Task<IActionResult> Create([Bind("BodegaCarnazaId,Cantidad,Codigo,BodegaTripaId,BodegaId")] BodegaCarnaza bodegaCarnaza)
         {
             if (ModelState.IsValid)
             {
@@ -79,6 +72,7 @@ namespace ServicuerosSA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BodegaId"] = new SelectList(_context.Bodega, "BodegaId", "NombreBodega", bodegaCarnaza.BodegaId);
             ViewData["BodegaTripaId"] = new SelectList(_context.Bodegatripa, "BodegaTripaId", "BodegaTripaId", bodegaCarnaza.BodegaTripaId);
             return View(bodegaCarnaza);
         }
@@ -91,11 +85,12 @@ namespace ServicuerosSA.Controllers
                 return NotFound();
             }
 
-            var bodegaCarnaza = await _context.BodegaCarnaza_1.SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
+            var bodegaCarnaza = await _context.BodegaCarnaza.SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
             if (bodegaCarnaza == null)
             {
                 return NotFound();
             }
+            ViewData["BodegaId"] = new SelectList(_context.Bodega, "BodegaId", "NombreBodega", bodegaCarnaza.BodegaId);
             ViewData["BodegaTripaId"] = new SelectList(_context.Bodegatripa, "BodegaTripaId", "BodegaTripaId", bodegaCarnaza.BodegaTripaId);
             return View(bodegaCarnaza);
         }
@@ -105,7 +100,7 @@ namespace ServicuerosSA.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("BodegaCarnazaId,Cantidad,Codigo,BodegaTripaId")] BodegaCarnaza bodegaCarnaza)
+        public async Task<IActionResult> Edit(int id, [Bind("BodegaCarnazaId,Cantidad,Codigo,BodegaTripaId,BodegaId")] BodegaCarnaza bodegaCarnaza)
         {
             if (id != bodegaCarnaza.BodegaCarnazaId)
             {
@@ -132,6 +127,7 @@ namespace ServicuerosSA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["BodegaId"] = new SelectList(_context.Bodega, "BodegaId", "NombreBodega", bodegaCarnaza.BodegaId);
             ViewData["BodegaTripaId"] = new SelectList(_context.Bodegatripa, "BodegaTripaId", "BodegaTripaId", bodegaCarnaza.BodegaTripaId);
             return View(bodegaCarnaza);
         }
@@ -144,7 +140,8 @@ namespace ServicuerosSA.Controllers
                 return NotFound();
             }
 
-            var bodegaCarnaza = await _context.BodegaCarnaza_1
+            var bodegaCarnaza = await _context.BodegaCarnaza
+                .Include(b => b.BodegaGeneral)
                 .Include(b => b.Bodegatripas)
                 .SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
             if (bodegaCarnaza == null)
@@ -160,15 +157,15 @@ namespace ServicuerosSA.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var bodegaCarnaza = await _context.BodegaCarnaza_1.SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
-            _context.BodegaCarnaza_1.Remove(bodegaCarnaza);
+            var bodegaCarnaza = await _context.BodegaCarnaza.SingleOrDefaultAsync(m => m.BodegaCarnazaId == id);
+            _context.BodegaCarnaza.Remove(bodegaCarnaza);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool BodegaCarnazaExists(int id)
         {
-            return _context.BodegaCarnaza_1.Any(e => e.BodegaCarnazaId == id);
+            return _context.BodegaCarnaza.Any(e => e.BodegaCarnazaId == id);
         }
     }
 }

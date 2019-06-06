@@ -1,11 +1,12 @@
 ﻿class Calibracion {
-    constructor(clasiweb,fecha, bombo, cantiA, cantiB,codigolote,  accion) {
+    constructor(clasiweb,fecha, bombo, cantiA, cantiB,codigolote,codiuni,  accion) {
         this.clasiweb = clasiweb;
         this.fecha = fecha;
         this.bombo = bombo;
         this.cantiA = cantiA;
         this.cantiB = cantiB;
         this.codigolote = codigolote;
+        this.codiuni = codiuni;
         
         this.accion = accion;
     }
@@ -56,12 +57,13 @@
                  var fecha = this.fecha;
                  var bombo = this.bombo;
                  var codigolote = this.codigolote;
+                 var codiuni = this.codiuni;
                  var accion = this.accion;
                 $.ajax({
                  type: "POST",
                  url: accion,
                  data: {
-                      clasiweb,fecha,bombo,cantiA,cantiB, codigolote
+                      clasiweb,fecha,bombo,cantiA,cantiB, codigolote,codiuni
                  },
                    success: (respuesta) => {
                       if (respuesta[0].code == 'ok') {
@@ -71,7 +73,7 @@
                       }
                             }
                         });
-                    }
+                }
                 
 
             

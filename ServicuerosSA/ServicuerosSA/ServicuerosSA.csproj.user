@@ -11,7 +11,11 @@
     <WebStackScaffolding_DbContextTypeFullName>ServicuerosSA.Data.ApplicationDbContext</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
     <WebStackScaffolding_IsViewGenerationSelected>True</WebStackScaffolding_IsViewGenerationSelected>
+<<<<<<< HEAD
     <ActiveDebugProfile>ServicuerosSA</ActiveDebugProfile>
+=======
+    <ActiveDebugProfile>IIS Express</ActiveDebugProfile>
+>>>>>>> 02d5649aa88567573a60a2f2ffc8bb8b0263f1c8
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>ProjectDebugger</DebuggerFlavor>

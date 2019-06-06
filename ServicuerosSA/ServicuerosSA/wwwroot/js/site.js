@@ -1,4 +1,5 @@
-﻿
+﻿///////// <reference path="bodegacarnaza.js" />
+
 // Write your JavaScript code.
 
 $().ready(() => {
@@ -100,6 +101,11 @@ var listadescarne = () => {
     var accion = '../Bodegatripas/Controladorlistadescarnes';
     var lisdescarnes = new BodegaTripa('', '','', '', '', '', '','', accion);
     lisdescarnes.ClaseListadescarnes();
+}
+var listacarnaza = () => {
+    var accion = '../BodegaCarnazas/controladorcarnaza';
+    var listacar = new BodegaCarnaza('','','','',accion);
+    listacar.ClaseListacarna();
 }
 ///LISTA ESCURRIDO
 var listaIndexescurrido = () => {
@@ -343,7 +349,7 @@ var listacheck = () => {
 }
 var listabombo = () => {
     var accion = 'ClasificacionWBlus/Controladorlistaescurrido';
-    var cla = new ClasificacionWB('', '', '', '', '', '', '', '','',accion);
+    var cla = new ClasificacionWB('', '', '', '', '', '', '', '','','',accion);
     cla.bombos();
 }
 
@@ -418,8 +424,13 @@ var GuardarClasificacionWebBlu = () => {
     var personal = per.options[per.selectedIndex].value;
     var d = new Date();
     var fecha = d.getDate();
+    var dt = new Date();
+    var month = dt.getMonth() + 2;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    var codiuni = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
     var observaciones = document.getElementById("observaciones").text;
-    var guardar = new ClasificacionWB(d, numeropieles,observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido, accion);
+    var guardar = new ClasificacionWB(d, numeropieles,observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido,codiuni, accion);
     guardar.GuardaClasificacionWB();
 
 }
@@ -627,7 +638,7 @@ var GuardaEscurrido = () => {
     var d = new Date();
     var fecha = d.getDate();
     var dt = new Date();
-    var month = dt.getMonth() + 1;
+    var month = dt.getMonth() + 3;
     var day = dt.getDate();
     var year = dt.getFullYear();
     $('#ListaEscurrido tr').each(function () {
@@ -670,8 +681,8 @@ var numeropielescurtido = () =>
 var unescurrido = () => {
     var accion = 'ClasificacionWBlus/Controladorunescurre';
     var cmb = document.getElementById('EscurridoId');
-    var unescurrido = cmb.options[cmb.selectedIndex].text;
-    var clasiweb = new ClasificacionWB('','', '', '', '', '', '','','', accion);
+    var unescurrido = cmb.options[cmb.selectedIndex].value;
+    var clasiweb = new ClasificacionWB('', '', '', '', '', '', '', '', '','', accion);
     clasiweb.uncrutido(unescurrido);
 }
 
@@ -701,7 +712,7 @@ var controlpielesescurrir = () => {
 /// combo escurrido para calsificacion web
 var listawebblu = () => {
     var accion = 'ClasificacionWBlus/Controladorlistaescurrido';
-    var clasi = new ClasificacionWB('', '', '', '', '', '', '', '','', accion);
+    var clasi = new ClasificacionWB('', '', '', '', '', '', '', '','','', accion);
     clasi.listaescurridos();
 }
 var listaClasiweb = () => {
@@ -730,7 +741,7 @@ var controlpielclasiweb = () => {
 ////index clasiweb
 var listaindexWB = () => {
     var accion = 'ClasificacionWBlus/ControladorindexWB';
-    var lista = new ClasificacionWB('', '', '', '', '', '', '', '', '',  accion);
+    var lista = new ClasificacionWB('', '', '', '', '', '', '', '', '','',  accion);
     lista.listaindexweb();
 }
 
@@ -740,7 +751,7 @@ var listaindexWB = () => {
 //// combo calibrado
 var listacombox = () => {
     var accion = 'Calibracions/controladorlistaweb';
-    var lista = new Calibracion('', '', '', '', '','', accion);
+    var lista = new Calibracion('', '', '', '', '','','', accion);
     lista.listaclas();
 }
 
@@ -749,7 +760,7 @@ var uncalibrado = () => {
     var accion = 'Calibracions/ControladorUnclasiweb';
     var cmb = document.getElementById('ClasificacionwbId');
     var unclasi = cmb.options[cmb.selectedIndex].value;
-    var clasi = new Calibracion('', '', '', '', '','',  accion);
+    var clasi = new Calibracion('', '', '', '', '','','',  accion);
     clasi.unclasiweb(unclasi);
 }
 //// control pieles calibracion
@@ -771,25 +782,25 @@ var controlpielcalibracion = () => {
         var accion = 'Medidoes/ControladorUncalibrado';
         var cmb = document.getElementById('CalibracionId');
         var unmedi = cmb.options[cmb.selectedIndex].value;
-        var medido = new Medido('', '', '', '', '', '', '', '','','','', accion);
+        var medido = new Medido('', '', '', '', '', '', '', '','','','','', accion);
         medido.uncalibrado(unmedi);
 }
 ///index calibrado
 var listaindexcalibrado = () => {
     var accion = 'Calibracions/listaIndexCalibra';
-    var lista = new Calibracion('', '', '', '', '', '', accion);
+    var lista = new Calibracion('', '', '', '', '', '','', accion);
     lista.listaindexcalibrado();
 }
     ////index medido
 var listaIndexmedido = () => {
     var accion = 'Medidoes/ListaIndexMedido';
-     var lista = new Medido('', '', '', '', '', '', '', '', '', '','', accion);
+    var lista = new Medido('', '', '', '', '', '', '', '', '', '', '','', accion);
     lista.listaindexmedido();
 }
 ////combo para medido
 var listamedido = () => {
     var accion = 'Medidoes/controladorcombo';
-    var escu = new Medido('', '', '', '', '', '', '', '','','','', accion);
+    var escu = new Medido('', '', '', '', '', '', '', '','','','','', accion);
     escu.listacalibra();
 }
 var GuardarMedidos = () => {
@@ -813,10 +824,14 @@ var GuardarMedidos = () => {
     var area = document.getElementById('area').value;
     var pallet = document.getElementById('pallet').value;
     var estante = document.getElementById('estante').value;
-
     var d = new Date();
     var fecha = d.getDate();
-    var guarda = new Medido(lote, fecha, codilote, cantidad, pallet, area, bodega, personal,tipome,cmedido,estante, accion);
+    var dt = new Date();
+    var month = dt.getMonth() + 1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    var codiuni = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
+    var guarda = new Medido(lote, fecha, codilote, cantidad, pallet, area, bodega, personal,tipome,cmedido,estante,codiuni, accion);
     guarda.GuardaMedido();
 }
 var guardaCalibrados = () => {
@@ -829,11 +844,28 @@ var guardaCalibrados = () => {
     var fe = new Date();
     var b = document.getElementById('bombo').value;
     var fecha = fe.getDate();
-    var guarda = new Calibracion(lote, fecha,b, cantiA, cantiB, codigo, accion);
+    var dt = new Date();
+    var month = dt.getMonth() + 1;
+    var day = dt.getDate();
+    var year = dt.getFullYear();
+    var codiunico = day + '|' + month + '|' + year + '|' + dt.getHours() + '|' + dt.getMinutes() + '|' + dt.getSeconds();
+    var guarda = new Calibracion(lote, fecha,b, cantiA, cantiB, codigo,codiunico, accion);
     guarda.GuardaCalibracion();
 }
 var listatipo = () => {
     var accion = 'Medidoes/Controladortipotripa';
-    var list = new Medido('', '', '', '', '', '', '', '', '', '','', accion);
+    var list = new Medido('', '', '', '', '', '', '', '', '', '', '','', accion);
     list.ClaseListtipotripa();
+}
+var GuardaCarnaza = () => {
+    var accion = 'BodegaCarnazas/ControladorGuardaCarnaza';
+    var lotes = document.getElementById("Descarneid");
+    var lote = lotes.options[lotes.selectedIndex].value;
+    var codigo = lotes.options[lotes.selectedIndex].text;
+
+    var peso = document.getElementById("PesoInput").text;
+
+
+    var guarda = new BodegaCarnaza(codigo, peso,lote,bodega, accion);
+    guarda.GuardaCarnaza();
 }

@@ -68,10 +68,25 @@ namespace ServicuerosSA.Models
             listaMedido.Add(objetodatos);
             return listaMedido;
         }
-        public List<IdentityError> ClaseguardaMedido(string codigolote, DateTime fecha, int calibracion, int cantidad, string pallet, Decimal area, int bodega, int personal, string tipo, string clasiweb, int estan)
+        public List<IdentityError> ClaseguardaMedido(string codigolote, DateTime fecha, int calibracion, int cantidad, string pallet, Decimal area, int bodega, int personal, string tipo, string clasiweb, int estan, string codiunimedido)
         {
             List<IdentityError> listamedido = new List<IdentityError>();
-        IdentityError error = new IdentityError();
+            List<Calibracionlist> listacalibrado = (from cali in _contexto.Calibracion
+                                                    where cali.codiunicalibrado == codiunimedido
+                                                    select new Calibracionlist
+                                                    {
+                                                        activo = cali.activo,
+                                                        bombo = cali.bombo,
+                                                        CantidadA = cali.CantidadA,
+                                                        CantidadB = cali.CantidadB,
+                                                        codigolote = cali.codigolote,
+                                                        calibracionId = cali.CalibracionId,
+                                                        ClasificacionwbId = cali.ClasificacionwbId,
+                                                        Fechacalibracion = cali.Fechacalibracion,
+                                                        codiunicalibrado = cali.codiunicalibrado
+                                                    }).ToList();
+
+
             try
             {
                 var guardamedi = new Medido
@@ -87,6 +102,7 @@ namespace ServicuerosSA.Models
                     tipotri = tipo,
                     tipoweb = clasiweb,
                     estanteria = estan,
+                    codiunimedido = codiunimedido,
                     activo = true 
                 };
                 _contexto.Medido.Add(guardamedi);
@@ -102,6 +118,8 @@ namespace ServicuerosSA.Models
                                              CantidadB = cali.CantidadB,
                                              codigolote = cali.codigolote,
                                              Fechacalibracion = cali.Fechacalibracion,
+                                             codiunicalibrado = cali.codiunicalibrado,
+                                             ClasificacionwbId = cali.ClasificacionwbId,
                                              activo= false
                                             }).FirstOrDefault();
                 _contexto.Calibracion.Update(calibra);
@@ -111,13 +129,15 @@ namespace ServicuerosSA.Models
                                       where cali.CalibracionId == calibracion
                                       select new Calibracion
                                       {
+                                          activo = false,
                                           CalibracionId = cali.CalibracionId,
                                           bombo = cali.bombo,
                                           CantidadA = cali.CantidadA,
                                           CantidadB = cali.CantidadB,
                                           codigolote = cali.codigolote,
                                           Fechacalibracion = cali.Fechacalibracion,
-                                          activo = false
+                                          codiunicalibrado = cali.codiunicalibrado,
+                                          ClasificacionwbId = cali.ClasificacionwbId
                                       }).FirstOrDefault();
                 if((calibradonuevo.CantidadA - Convert.ToInt32(cantidad))>0)
                 {
@@ -129,35 +149,32 @@ namespace ServicuerosSA.Models
                         CantidadB = calibradonuevo.CantidadB,
                         codigolote = calibradonuevo.codigolote,
                         Fechacalibracion = calibradonuevo.Fechacalibracion,
+                        codiunicalibrado = calibradonuevo.codiunicalibrado,
+                        ClasificacionwbId = calibradonuevo.ClasificacionwbId,
                         activo = true
                     };
                     _contexto.Calibracion.Add(dato);
                     _contexto.SaveChanges();
                 }
 
-                error = new IdentityError
+                 listamedido.Add( new IdentityError
                 {
                     Code = "ok",
                     Description = "ok"
-                };
+                });
             }
             catch (Exception e)
             {
-                error = new IdentityError
+                listamedido.Add( new IdentityError
                 {
                     Code = e.Message,
                     Description = e.Message,
-                };
+                });
 
             }
-            listamedido.Add(error);
+           
             return listamedido;
         }
-
-
-
-
-
     }
 }
     

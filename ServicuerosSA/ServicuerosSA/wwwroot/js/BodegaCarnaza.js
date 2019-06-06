@@ -1,8 +1,10 @@
 ﻿class BodegaCarnaza {
-    constructor(codigo, peso, accion)
+    constructor(codigo, peso,tripa,bodega, accion)
     {
-        this.codigo = codigo; 
+        this.codigo = codigo;
         this.peso = peso;
+        this.tripa = tripa;
+        this.bodega = bodega;
         this.accion = accion;
     }
     GuardaCarnaza() {
@@ -18,12 +20,15 @@
                     document.getElementById('mensajep').innerHTML = "Seleccione al personal asignado";
                 } else {
                     var peso = this.peso;
+                    var codigo = this.codigol;
+                    var tripa = this.tripa;
+                    var bodega = this.bodega;
                     var accion = this.accion;
                     $.ajax({
                         type: "POST",
                         url: accion,
                         data: {
-                           codigo, peso
+                            peso,codigo,tripa,bodega
                         },
                         success: (respuesta) => {
                             if (respuesta[0].code == "ok") {
@@ -42,7 +47,7 @@
             }
         }
     }
-    ClaseListadescarne() {
+    ClaseListacarna() {
         var accion = this.accion;
         var contador = 1;
         $.ajax({
@@ -50,9 +55,7 @@
             url: accion,
             data: {},
             success: (respuesta) => {
-
                 if (0 < respuesta.length) {
-
                     for (var i = 0; i < respuesta.length; i++) {
                         document.getElementById('Descarneid').options[contador] = new Option(respuesta[i].codigoLote, respuesta[i].descarneId);
                         contador++;

@@ -15,6 +15,7 @@ namespace ServicuerosSA.Models
         public int CantidadB { get; set; }
         public string  codigolote { get; set; }
         public bool activo { get; set; }
+        public String  codiunicalibrado { get; set; }
         public int ClasificacionwbId { get; set; }
         public ClasificacionWB ClasificacionWB { get; set; }
         

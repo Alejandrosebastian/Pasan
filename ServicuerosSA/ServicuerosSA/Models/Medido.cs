@@ -22,6 +22,7 @@ namespace ServicuerosSA.Models
         public int estanteria { get; set; }
         public string tipotri { get; set; }
         public string tipoweb { get; set; }
+        public string  codiunimedido { get; set; }
         public int CalibracionId { get; set; }
         public Calibracion Calibracion { get; set; }
 

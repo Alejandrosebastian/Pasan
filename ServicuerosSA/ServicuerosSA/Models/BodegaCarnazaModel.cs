@@ -10,10 +10,14 @@ namespace ServicuerosSA.Models
     public class BodegaCarnazaModel
     {
         ApplicationDbContext _contexto;
-       
+
         public BodegaCarnazaModel(ApplicationDbContext contexto)
         {
             _contexto = contexto;
+        }
+        public List<Descarne> modelolistacarnaza()
+        {
+            return _contexto.Descarne.Where(de => de.Activo).ToList();
         }
         //***GUARDA
         public List<IdentityError> ClaseguardaCarnaza(string codigo, decimal peso)
@@ -29,7 +33,7 @@ namespace ServicuerosSA.Models
                     Cantidad = peso
                 };
 
-                _contexto.BodegaCarnaza_1.Add(guardacarnaza);
+                _contexto.BodegaCarnaza.Add(guardacarnaza);
                 _contexto.SaveChanges();
 
             }
@@ -42,8 +46,9 @@ namespace ServicuerosSA.Models
                 });
             }
 
-            return listacarnaza;
+               return listacarnaza;
+           
+            //******
         }
-        //******
     }
 }
