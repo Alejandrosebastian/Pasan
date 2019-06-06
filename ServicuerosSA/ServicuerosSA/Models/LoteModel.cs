@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore.Internal;
 using ServicuerosSA.Data;
 namespace ServicuerosSA.Models
 {
@@ -52,21 +53,19 @@ namespace ServicuerosSA.Models
             List<MostrarListaLoteModel> lotes = null;
 
             lotes = (from l in _contexto.Lote
-                        join p in _contexto.Personal on l.PersonalId equals p.PersonalId
-                        join tp in _contexto.TipoPiel on l.TipoPielId equals tp.TipoPielId
-                     where l.estado == true
-                        select new MostrarListaLoteModel
-                        {
-                            LoteId = l.LoteId,
-                           Codigolote = l.Codigolote,
-                           Fechaingreso = l.Fechaingreso,
-                           Numerodepieles = l.Numerodepieles,
-                          Observaciones = l.Observaciones,
-                            nombres = p.Nombres + " " + p.Apellidos,
-                           Detalle= tp.Detalle
-                        }).OrderByDescending(f => f.Fechaingreso).ToList();
-
-            numRegistros = lotes.Count;
+                     join p in _contexto.Personal on l.PersonalId equals p.PersonalId
+                     join tp in _contexto.TipoPiel on l.TipoPielId equals tp.TipoPielId
+                     where l.estado == true 
+                     select new MostrarListaLoteModel
+                     {
+                         LoteId = l.LoteId,
+                         Codigolote = l.Codigolote,
+                         Fechaingreso = l.Fechaingreso,
+                         Numerodepieles = l.Numerodepieles,
+                         Observaciones = l.Observaciones,
+                         nombres = p.Nombres + " " + p.Apellidos,
+                         Detalle = tp.Detalle
+                     }).OrderByDescending(f => f.Fechaingreso).ToList();
             inicio = (numeroPagina - 1) * reg_por_pagina;
             can_paginas = (numRegistros / reg_por_pagina);
 

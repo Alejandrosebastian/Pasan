@@ -327,6 +327,7 @@ namespace ServicuerosSA.Models
                        select new {
                            p.PelambreId,
                            l.Codigolote,
+                           p.Codigo,
                            tp.Detalle,
                            c.Selecciones,
                            p.Fecha,
@@ -338,7 +339,7 @@ namespace ServicuerosSA.Models
             string compara = "";
             foreach (var item in res)
             {  
-                dato += "<tr><td>" + item.Codigolote + "</td>" +
+                dato += "<tr><td>" + item.Codigo +  "</td>" +
                     "<td>" + item.Detalle + "</td>" +
                     "<td>" + item.Selecciones + "</td>" +
                     "<td>" + item.Fecha.ToString("dd-MM-yyyy hh:mm") + "</td>" +
@@ -439,9 +440,9 @@ namespace ServicuerosSA.Models
                            NombreAutoirzado = pe.Nombres + " " + pe.Apellidos,
                            FechaValida = DateTime.Now.ToString(),
                            NombreEntregado = pe.Nombres + " " + pe.Apellidos,
-                           NombreProcesado = fo.TipoProceso,
-                           Codigo = p.CodigoLote + p.Codigo,
-                           Parada = p.PelambreId.ToString(),
+                           //NombreProcesado = fo.TipoProceso,
+                           //Codigo = p.CodigoLote + p.Codigo,
+                           Parada = p.Codigo,
                            Peso = p.Peso.ToString(),
                            Promedio = (p.Peso / p.TotalPieles).ToString(),
                            Version = fo.Version,
@@ -561,7 +562,7 @@ namespace ServicuerosSA.Models
                 "<td>" + item.Detalle.ToUpper() + "</td>" +
                 "<td>" + item.Porcentaje.ToUpper() + "</td>" +
                 "<td>" + (pesototal * Double.Parse(item.Porcentaje)) / 100 + "</td>" +
-                "<td> </td>" +
+                
                 "</tr>";
             }
             object[] objeto = { dato };
@@ -606,9 +607,9 @@ namespace ServicuerosSA.Models
                     "<td>" + item.Peso + "</td>" +
 
                     "<td>" + item.Fecha + "</td>" +
-                "<td>" + item.NombreBodega.ToUpper() + "Estanteria  </td>" +
+                "<td>" + item.NombreBodega.ToUpper()+"</td>" +
                 "<td>" + item.Selecciones + "</td>" +
-                "<td> </td>" +
+                
                 "</tr>";
 
             }

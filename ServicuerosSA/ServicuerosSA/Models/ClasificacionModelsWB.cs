@@ -63,10 +63,24 @@ namespace ServicuerosSA.Models
             listaclasiWB.Add(objetodatos);
             return listaclasiWB;
         }
-        public List<IdentityError> claseguardaweb(DateTime fecha, int numeropieles, string observaciones, int bodega, int bombo,  int tipo, int personal, string codigolote, int escurrido)
+        public List<IdentityError> claseguardaweb(DateTime fecha, int numeropieles, string observaciones, int bodega, int bombo,  int tipo, int personal, string codigolote, int escurrido, string codiuniWb)
         {
             List<IdentityError> listaweb = new List<IdentityError>();
-            IdentityError error = new IdentityError();
+            List<EscurriList> listaWB = (from es in _contexto.Escurrido
+                                          where es.codiuniescurridio == codiuniWb
+                                          select new EscurriList
+                                          {
+                                              Activo = es.Activo,
+                                              CodigoLote = es.CodigoLote,
+                                              escurridoId = es.EscurridoId,
+                                              Fecha = es.Fecha,
+                                              Cantidad = es.Cantidad,
+                                              CurtidoId = es.CurtidoId,
+                                              PersonalId = es.PersonalId,
+                                              BomboId = es.BomboId
+                                          }).ToList();
+
+
             try
             {
                 var guardaweb = new ClasificacionWB
@@ -80,6 +94,7 @@ namespace ServicuerosSA.Models
                     codigolote = codigolote,
                     Observaciones = observaciones,
                     EscurridoId = escurrido,
+                    codiuniWb = codiuniWb,
                     Activo = true
                 };
                 _contexto.ClasificacionWB.Add(guardaweb);
@@ -101,25 +116,55 @@ namespace ServicuerosSA.Models
                                      }).FirstOrDefault();
                 _contexto.Escurrido.Update(escurri);
                 _contexto.SaveChanges();
-                error = new IdentityError
+
+                var clasificacionWBnuevo =(from es in _contexto.Escurrido
+                                           where es.EscurridoId == escurrido
+                                           select new Escurrido
+                                           {
+                                               EscurridoId = es.EscurridoId,
+                                               PersonalId = es.PersonalId,
+                                               BomboId = es.BomboId,
+                                               CurtidoId = es.CurtidoId,
+                                               CodigoLote = es.CodigoLote,
+                                               Cantidad = es.Cantidad,
+                                               codiuniescurridio = es.codiuniescurridio,
+                                               Fecha = es.Fecha,
+                                               Activo = false,
+                                           }).FirstOrDefault();
+                if((Convert.ToInt32(clasificacionWBnuevo.Cantidad)- Convert.ToInt32(numeropieles))>0)
+                {
+                    Escurrido dato = new Escurrido()
+                    {
+                        BomboId =clasificacionWBnuevo.BomboId,
+                        CodigoLote = clasificacionWBnuevo.CodigoLote,
+                        Cantidad = clasificacionWBnuevo.Cantidad - Convert.ToInt32(numeropieles),
+                        CurtidoId = clasificacionWBnuevo.CurtidoId,
+                        Fecha = clasificacionWBnuevo.Fecha,
+                        PersonalId = clasificacionWBnuevo.PersonalId,
+                        codiuniescurridio = clasificacionWBnuevo.codiuniescurridio,
+                        Activo = true
+
+                    };
+                    _contexto.Escurrido.Add(dato);
+                    _contexto.SaveChanges();
+                }
+
+                listaweb.Add( new IdentityError
                 {
                     Code = "ok",
                     Description = "ok"
-                };
+                });
             }
             catch (Exception e)
             {
-                error = new IdentityError
+                listaweb.Add( new IdentityError
                 {
                     Code = e.Message,
                     Description = e.Message,
-                };
+                });
 
             }
-            listaweb.Add(error);
             return listaweb;
-
-
 
         }
     }

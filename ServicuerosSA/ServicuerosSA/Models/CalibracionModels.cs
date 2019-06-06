@@ -20,7 +20,7 @@ namespace ServicuerosSA.Models
             return _contexto.ClasificacionWB.Where(c => c.Activo == true).ToList();
         }
 
-        public List<IdentityError> Claseguardacalibracion(int clasiweb, DateTime fecha, int bombo, int cantiA, int cantiB, string codigolote)
+        public List<IdentityError> Claseguardacalibracion(int clasiweb, DateTime fecha, int bombo, int cantiA, int cantiB, string codigolote, string codiunicalibrado)
         {
             List<IdentityError> listacalibra = new List<IdentityError>();
             IdentityError error = new IdentityError();
@@ -34,6 +34,7 @@ namespace ServicuerosSA.Models
                     CantidadB = cantiB,
                     codigolote = codigolote,
                     ClasificacionwbId = clasiweb,
+                    codiunicalibrado = codiunicalibrado,
                     activo = true
 
                 };
@@ -53,6 +54,7 @@ namespace ServicuerosSA.Models
                                               Fecha = cla.Fecha,
                                               NumeroPieles = cla.NumeroPieles,
                                               PersonalId = cla.PersonalId,
+                                              codiuniWb = cla.codiuniWb,
                                               Activo = false,
                                            }).FirstOrDefault();
                 _contexto.ClasificacionWB.Update(clasiwe);

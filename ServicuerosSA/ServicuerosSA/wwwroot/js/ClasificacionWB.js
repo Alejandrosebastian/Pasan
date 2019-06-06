@@ -1,5 +1,5 @@
 ﻿class ClasificacionWB {
-    constructor(fecha, numeropieles, observaciones, bodega, bombo, tipo, personal, codigolote,escurrido, accion) {
+    constructor(fecha, numeropieles, observaciones, bodega, bombo, tipo, personal, codigolote,escurrido,codiuniWb, accion) {
         this.fecha = fecha;
         this.numeropieles = numeropieles;
         this.observaciones = observaciones;
@@ -8,7 +8,8 @@
         this.tipo = tipo;
         this.personal = personal;
         this.codigoLote = codigolote,
-            this.escurrido = escurrido,
+        this.escurrido = escurrido,
+        this.codiuniWb = codiuniWb,
         this.accion = accion;
     }
     listaindexweb() {
@@ -34,6 +35,7 @@
             url: accion,
             data: {},
             success: (respuesta) => {
+                console.log(respuesta);
                 if (0 < respuesta.length) {
                     
                     for (var i = 0; i < respuesta.length; i++) {
@@ -69,13 +71,14 @@
                         var personal = this.personal;
                         var codigolote = this.codigoLote;
                         var escurrido = this.escurrido;
+                        var codiuniWb = this.codiuniWb;
                         var accion = this.accion;
                         $.ajax({
                             type: "POST",
                             url: accion,
                             data: {
                                 
-                                fecha, numeropieles, observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido
+                                fecha, numeropieles, observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido,codiuniWb
                             },
                             success: (respuesta) => {
                                 console.log(respuesta);
@@ -139,8 +142,8 @@
         document.getElementById('cantidad').value = '';
         document.getElementById('fechaclasi').value = '';
         document.getElementById('personalId').selectedIndex = 0;
-       // listaindexweb();
-        //$('#ClasificacionWBlista').html('');
+        listaindexweb();
+       $('#ClasificacionWBlista').html('');
         this.limpiarcajarclasiweb();
         $('#IngresoClasificacionWB').modal('hide');
 

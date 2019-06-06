@@ -1,5 +1,5 @@
 ﻿class Medido {
-    constructor(codigolote, fecha, calibracion,cantidad,pallet, area, bodega, personal,tipo,clasiweb,estan,accion)
+    constructor(codigolote, fecha, calibracion, cantidad, pallet, area, bodega, personal, tipo, clasiweb, estan,codiunimedido,accion)
     {
         this.codigolote = codigolote;
        
@@ -13,6 +13,7 @@
         this.tipo = tipo;
         this.clasiweb = clasiweb;
         this.estan = estan;
+        this.codiunimedido = codiunimedido;
         this.accion = accion;
 
     }
@@ -91,19 +92,24 @@
                 var tipo = this.tipo;
                 var clasiweb = this.clasiweb;
                 var estan = this.estan;
+                var codiunimedido = this.codiunimedido;
                 var accion = this.accion;
                 $.ajax({
                     type: "POST",
                     url: accion,
                     data: {
-                        codigolote, fecha, calibracion, cantidad,pallet, area,bodega,personal, tipo, clasiweb, estan
+                        codigolote, fecha, calibracion, cantidad, pallet, area, bodega, personal, tipo, clasiweb, estan, codiunimedido
                     },
                     success: (respuesta) => {
-                        if (respuesta[0].code == "ok") {
+                        if (respuesta[0].code === "ok") {
+                            this.limpiacajas();
+                            $('#IngresoMedido').modal('hide');
                             swal("Medido", "Seguardo con exito", "succes");
+                            this.limpiarcajarclasiweb();
                         } else {
+                           this.limpiacajas();
                             swal("Medido", "Error al guardar", "error");
-
+                            this.limpiarcajarclasiweb();
                         }
                     }
                 });
@@ -145,5 +151,25 @@
             }
         });
     }
+    limpiacajas() {
+        document.getElementById('Totalpieles').text = '';
+        document.getElementById('bombo').text = '';
+        document.getElementById('fecha').text = '';
+        document.getElementById('ClasificaciontripaId').selectedIndex = 0;
+        document.getElementById('clasiwebId').selectedIndex = 0;
+        document.getElementById('cantidad').value = '';
+        document.getElementById('pallet').text = '';
+        document.getElementById('fechamedi').value = '';
+        document.getElementById('personalId').selectedIndex = 0;
+        document.getElementById('BodegaId').selectedIndex = 0;
+        document.getElementById('estante').text = '';
+        document.getElementById('fecha').text = '';
+
+        listaindexmedido();
+        $('#IngresoMedido').html('');
+        this.limpiarcajarclasiweb();
+        $('#IngresoMedido').modal('hide');
+
+    } 
         
 }

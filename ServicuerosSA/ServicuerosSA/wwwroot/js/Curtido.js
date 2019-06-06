@@ -63,6 +63,7 @@
                                 $('#IngresoCurtido').modal('hide');
                                 swal("Curtido", "Se guardo exitosamente", "success");
                                 ListaIndexCurt();
+
                                 this.limpiarcajas();
                             } else {
                                 this.limpiarcajas();
@@ -112,7 +113,7 @@
         document.getElementById('formulaId').selectedIndex = 0;
         document.getElementById('personalId').selectedIndex = 0;
         document.getElementById('fecha').value = '';
-        //$('#ListaCurtido').html('');
+        $('#ListaCurtido').html('');
         ListaIndexCurt();
         $('#IngresoCurtido').modal('hidden');
 
@@ -168,5 +169,5 @@
             }
         );
     }
-   
+     
 }

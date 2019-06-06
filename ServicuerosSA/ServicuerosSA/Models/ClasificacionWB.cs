@@ -16,7 +16,7 @@ namespace ServicuerosSA.Models
         public bool Activo { get; set; }
         public string codigolote { get; set; }
         public int bombo { get; set; }
-
+        public string codiuniWb { get; set; }
         //relaciones
         public int BodegaId { get; set; }
         public Bodega bodega { get; set; }

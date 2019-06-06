@@ -247,6 +247,28 @@ namespace ServicuerosSA.Migrations
                     b.ToTable("Bodega1");
                 });
 
+            modelBuilder.Entity("ServicuerosSA.Models.BodegaCarnaza", b =>
+                {
+                    b.Property<int>("BodegaCarnazaId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<int>("BodegaId");
+
+                    b.Property<int>("BodegaTripaId");
+
+                    b.Property<decimal>("Cantidad");
+
+                    b.Property<string>("Codigo");
+
+                    b.HasKey("BodegaCarnazaId");
+
+                    b.HasIndex("BodegaId");
+
+                    b.HasIndex("BodegaTripaId");
+
+                    b.ToTable("BodegaCarnaza");
+                });
+
             modelBuilder.Entity("ServicuerosSA.Models.Bodegatripa", b =>
                 {
                     b.Property<int>("BodegaTripaId")
@@ -322,6 +344,8 @@ namespace ServicuerosSA.Migrations
 
                     b.Property<string>("codigolote");
 
+                    b.Property<string>("codiunicalibrado");
+
                     b.HasKey("CalibracionId");
 
                     b.HasIndex("ClasificacionwbId");
@@ -379,6 +403,8 @@ namespace ServicuerosSA.Migrations
                     b.Property<int>("clasiwebId");
 
                     b.Property<string>("codigolote");
+
+                    b.Property<string>("codiuniWb");
 
                     b.HasKey("ClasificacionwbId");
 
@@ -660,6 +686,8 @@ namespace ServicuerosSA.Migrations
 
                     b.Property<bool>("activo");
 
+                    b.Property<string>("codiunimedido");
+
                     b.Property<int>("estanteria");
 
                     b.Property<string>("tipotri");
@@ -927,6 +955,19 @@ namespace ServicuerosSA.Migrations
                     b.HasOne("ServicuerosSA.Models.TipoPiel", "TipoPiel")
                         .WithMany()
                         .HasForeignKey("TipoPielId")
+                        .OnDelete(DeleteBehavior.Restrict);
+                });
+
+            modelBuilder.Entity("ServicuerosSA.Models.BodegaCarnaza", b =>
+                {
+                    b.HasOne("ServicuerosSA.Models.Bodega", "BodegaGeneral")
+                        .WithMany()
+                        .HasForeignKey("BodegaId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.HasOne("ServicuerosSA.Models.Bodegatripa", "Bodegatripas")
+                        .WithMany()
+                        .HasForeignKey("BodegaTripaId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });
 

@@ -34,9 +34,9 @@ namespace ServicuerosSA.Controllers
             return listacurtidos.Claselistamodelescurrido();
         }
 
-        public List<IdentityError> ControladorguardaWB(DateTime fecha, int numeropieles, string observaciones, int bodega, int bombo,  int tipo, int personal, string codigolote, int escurrido)
+        public List<IdentityError> ControladorguardaWB(DateTime fecha, int numeropieles, string observaciones, int bodega, int bombo,  int tipo, int personal, string codigolote, int escurrido, string codiuniWb)
         {
-            return guardawb.claseguardaweb(fecha, numeropieles, observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido);
+            return guardawb.claseguardaweb(fecha, numeropieles, observaciones, bodega, bombo,  tipo, personal, codigolote, escurrido,codiuniWb);
     }
         public List<object[]> ControladorindexWB()
         {
@@ -45,7 +45,7 @@ namespace ServicuerosSA.Controllers
         // GET: ClasificacionWBlus
         public async Task<IActionResult> Index()
         {
-            return View(await _context.ClasificacionWB.ToListAsync());
+            return View();
         }
 
         // GET: ClasificacionWBlus/Details/5
@@ -177,8 +177,8 @@ namespace ServicuerosSA.Controllers
         {
             MostrarDatos lista = (from ex in _context.Escurrido
                                         join b in _context.Bombo on ex.BomboId equals b.BomboId
-                                        where ex.CodigoLote == id
-                                        select new MostrarDatos
+                                        where ex.EscurridoId == Convert.ToInt32(id) && ex.Activo == true
+                                  select new MostrarDatos
                                         {
                                             bombo = b.Num_bombo.ToString(),
                                             cantidad = ex.Cantidad,

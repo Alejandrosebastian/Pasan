@@ -1,17 +1,10 @@
 ﻿@model ServicuerosSA.Models.BodegaCarnaza
 
 @{
-    Layout = null;
+    ViewData["Title"] = "Create";
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Create</title>
-</head>
-<body>
+<h2>Create</h2>
 
 <h4>BodegaCarnaza</h4>
 <hr />
@@ -34,6 +27,10 @@
                 <select asp-for="BodegaTripaId" class ="form-control" asp-items="ViewBag.BodegaTripaId"></select>
             </div>
             <div class="form-group">
+                <label asp-for="BodegaId" class="control-label"></label>
+                <select asp-for="BodegaId" class ="form-control" asp-items="ViewBag.BodegaId"></select>
+            </div>
+            <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-default" />
             </div>
         </form>
@@ -47,5 +44,3 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 }
-</body>
-</html>

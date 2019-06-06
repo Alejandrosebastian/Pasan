@@ -15,10 +15,8 @@ namespace ServicuerosSA.Models
         public string codiuniescurridio { get; set; }
         //RELACIONES
         public int BomboId { get; set; }
-        public Bombo Bombos { get; set; }
         public int CurtidoId { get; set; }
-        public Curtido Curtido { get; set; }
         public int PersonalId { get; set; }
-        public Personal personal { get; set; }
+        
     }
 }

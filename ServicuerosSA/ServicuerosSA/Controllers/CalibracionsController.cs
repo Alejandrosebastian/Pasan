@@ -30,9 +30,9 @@ namespace ServicuerosSA.Controllers
             return listaclasiweb.Modelolistaclasiwb();
         }
        
-        public List<IdentityError> controladorguardacalibra(int clasiweb, DateTime fecha, int bombo, int cantiA, int cantiB, string codigolote)
+        public List<IdentityError> controladorguardacalibra(int clasiweb, DateTime fecha, int bombo, int cantiA, int cantiB, string codigolote,string codiunicalibrado)
         {
-            return clasecalibra.Claseguardacalibracion(clasiweb, fecha, bombo, cantiA, cantiB, codigolote);
+            return clasecalibra.Claseguardacalibracion(clasiweb, fecha, bombo, cantiA, cantiB, codigolote,codiunicalibrado);
         }
         public List<object[]> listaIndexCalibra()
         {
@@ -189,10 +189,10 @@ namespace ServicuerosSA.Controllers
                                   select new Muestradatos
                                   {
                                       fecha = cur.Fecha,
-                                      cantidad = Convert.ToInt32(cur.NPieles),
+                                      cantidad = Convert.ToInt32(claswb.NumeroPieles),
                                       detalle = sele.Detalle,
                                       bombo = bo1.Num_bombo,
-                                      tipo = tripa.Detalle
+                                      tipo = tripa.Detalle,
                                   }).First();
 
 
